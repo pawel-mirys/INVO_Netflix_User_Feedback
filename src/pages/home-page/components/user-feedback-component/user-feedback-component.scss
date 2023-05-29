@@ -55,4 +55,39 @@
     line-height: 120%;
     color: #8d8d8d;
   }
+
+  @media (max-width: 500px) {
+    width: calc(100vw - 32px);
+    padding: 16px;
+
+    &__icon-container {
+      img {
+        width: 40px;
+      }
+    }
+
+    &__title {
+      max-width: 200px;
+      font-size: 18px;
+      line-height: 18px;
+      letter-spacing: -0.02em;
+      margin-top: 12px;
+    }
+    &__rating-container {
+      margin-top: 24px;
+    }
+    &__single-rate-tile {
+      width: 56px;
+      height: 48px;
+    }
+    &__labels-container {
+      margin-top: 12px;
+    }
+    &__single-label {
+      font-size: 12px;
+
+      line-height: 14px;
+      letter-spacing: -0.01em;
+    }
+  }
 }
