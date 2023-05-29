@@ -1,3 +1,58 @@
 .user-feedback-component {
-    
+  width: 496px;
+  padding: 32px;
+
+  &__title {
+    max-width: 265px;
+    text-align: start;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 100%;
+    margin-top: 16px;
+  }
+
+  &__rating-container {
+    width: 100%;
+    margin-top: 32px;
+  }
+
+  &__rates-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+  }
+
+  &__single-rate-tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 80px;
+    height: 64px;
+    border: 1px solid #3c3c3c;
+    border-radius: 16px;
+    &:hover {
+      border: 1px solid #5f5f5f;
+    }
+
+    &[data-selected] {
+      border: 1px solid #d12f26;
+      background-color: rgba(#d12f26, 0.08);
+    }
+  }
+
+  &__labels-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 16px;
+  }
+  &__single-label {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    color: #8d8d8d;
+  }
 }
