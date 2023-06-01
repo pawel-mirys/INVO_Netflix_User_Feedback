@@ -11,6 +11,21 @@ export const UserFeedbackComponent = () => {
     '.user-feedback-component__confirm-button'
   );
 
+  const explanationContainer = userFeedbackComponent.querySelector(
+    '.user-feedback-component__explanation-container'
+  );
+
+  const explanationInput = userFeedbackComponent.querySelector(
+    '.user-feedback-component__explanation-input'
+  );
+
+  const feedbackData = {
+    userRating: null,
+    userExplanation: null,
+    isRated: false,
+    isExplained: false,
+  };
+
   const disableMultiRating = (clickedTile) => {
     allRatesTiles.forEach((singleTile) => {
       if (singleTile !== clickedTile) {
@@ -18,6 +33,26 @@ export const UserFeedbackComponent = () => {
       }
     });
   };
+
+  const setUserExplanation = (e) => {
+    let inputValue = null;
+    inputValue = e.target.value;
+    feedbackData.userExplanation = inputValue;
+
+    if ((feedbackData.userExplanation = null || e.target.value === '')) {
+      feedbackData.isExplained = false;
+    } else {
+      feedbackData.isExplained = true;
+    }
+
+    if (feedbackData.isRated && feedbackData.isExplained) {
+      confirmButton.removeAttribute('disabled');
+    } else {
+      confirmButton.setAttribute('disabled', true);
+    }
+  };
+
+  explanationInput.addEventListener('input', setUserExplanation);
 
   const setButtonState = (currentRating) => {
     currentRating
@@ -30,6 +65,7 @@ export const UserFeedbackComponent = () => {
     clickedTile.hasAttribute('data-selected')
       ? (currentRating = clickedTile.getAttribute('data-rate'))
       : (currentRating = null);
+    feedbackData.userRating = currentRating;
     setButtonState(currentRating);
   };
 
@@ -40,6 +76,20 @@ export const UserFeedbackComponent = () => {
         afterRatingChange(singleTile);
         disableMultiRating(singleTile);
       });
+    });
+  })();
+
+  const confirmRating = () => {
+    if (feedbackData.userRating) {
+      explanationContainer.classList.remove('disabled');
+      feedbackData.isRated = true;
+      confirmButton.setAttribute('disabled', true);
+    }
+  };
+
+  const addListenerToConfirmButton = (() => {
+    confirmButton.addEventListener('click', () => {
+      confirmRating();
     });
   })();
 };
